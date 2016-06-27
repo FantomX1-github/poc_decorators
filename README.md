@@ -1,6 +1,6 @@
 # POC for using @permissions decorator in PHP application
 
-This is NOT a framework, please don't use it it's just a proof of 
+This is NOT a framework, please don't use it. It's just a proof of 
 concept, it just have router
 working with permissions decorator and it is NOT ready for production
 

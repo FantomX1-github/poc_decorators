@@ -9,7 +9,7 @@
 class Welcome
 {
 	/**
-	 * @permission create delete explode remove
+	 * @permissions create delete explode remove
 	 */
 	public function index(){
 		echo "here";

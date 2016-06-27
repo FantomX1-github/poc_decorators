@@ -24,7 +24,7 @@ $mirror = new ReflectionClass($controller);
 $mirror_method = $mirror->getMethod($method);
 $comments = $mirror_method->getDocComment();
 
-if($comments && preg_match("/@permission (.+)/",$mirror_method->getDocComment(),$matches)){
+if($comments && preg_match("/@permissions (.+)/",$mirror_method->getDocComment(),$matches)){
 	if(array_key_exists(1,$matches)){
 		//check permission here.
 		$permission = $matches[1];

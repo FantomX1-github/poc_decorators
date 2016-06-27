@@ -1,0 +1,5 @@
+.idea/
+codecept.phar
+tests/_*
+!tests/_bootstrap.php
+vendor/

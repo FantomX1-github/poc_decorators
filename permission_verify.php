@@ -1,0 +1,22 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: cyberkiller
+ * Date: 6/27/16
+ * Time: 8:23 AM
+ */
+require_once 'vendor/autoload.php';
+use \Firebase\JWT\JWT;
+function verify($permissions){
+	$jwt = $_GET['jwt'];
+	$key = "example_key";
+	$decoded = JWT::decode($jwt, $key, array('HS256'));
+	$permissions_missing = array_diff($permissions, $decoded->permissions);
+	if(count($permissions_missing)>0){
+		$data['status'] = false;
+		$data['missing'] = $permissions_missing;
+		return $data;
+	}else{
+		return true;
+	}
+}

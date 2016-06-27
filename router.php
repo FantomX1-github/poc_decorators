@@ -5,7 +5,7 @@ $router = new Router($_SERVER['REQUEST_URI']);
 
 $controller = $router->getController();
 $method = $router->getMethod();
-$file = __DIR__.'/application/'.$controller.'.php';
+$file = __DIR__.'/application/controllers/'.$controller.'.php';
 
 if(!file_exists($file)){
 	echo '404';

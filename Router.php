@@ -11,14 +11,14 @@ class Router
 	private $request_url;
 	function __construct($request_url = null)
 	{
-		$this->request_url = $request_url;
-
+		$this->request_url = explode('?',$request_url)[0];
 	}
 	public function getController(){
-		if($this->request_url == '/')
+		$request = explode('/', $this->request_url);
+		if(count($request) === 1 or $this->request_url === '/'){
 			return 'Welcome';
-		$request = explode('/',$this->request_url);
-		return ucfirst($request[1]);
+		}
+		return ucfirst(explode('/', $this->request_url)[1]);
 	}
 	public function getMethod(){
 		if($this->request_url == '/')
@@ -29,7 +29,7 @@ class Router
 
 	public function setRequestUrl($request_url)
 	{
-		$this->request_url = $request_url;
+		$this->request_url = explode('?',$request_url)[0];
 
 		return $this;
 	}

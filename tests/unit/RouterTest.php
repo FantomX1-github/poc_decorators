@@ -34,10 +34,28 @@ class RouterTest extends \Codeception\Test\Unit
         $tester = new Router('/');
         $this->assertEquals('Welcome', $tester->getController());
 
+        $tester = new Router('?params');
+        $this->assertEquals('Welcome', $tester->getController());
+
+        $tester = new Router('/?params');
+        $this->assertEquals('Welcome', $tester->getController());
+
         $tester->setRequestUrl('/login');
         $this->assertEquals('Login', $tester->getController());
 
+        $tester->setRequestUrl('/login?params');
+        $this->assertEquals('Login', $tester->getController());
+
+        $tester->setRequestUrl('/login/?params');
+        $this->assertEquals('Login', $tester->getController());
+
         $tester->setRequestUrl('/login/forgot');
+        $this->assertEquals('Login', $tester->getController());
+
+        $tester->setRequestUrl('/login/forgot?params');
+        $this->assertEquals('Login', $tester->getController());
+
+        $tester->setRequestUrl('/login/forgot/?params');
         $this->assertEquals('Login', $tester->getController());
     }
 
@@ -45,10 +63,28 @@ class RouterTest extends \Codeception\Test\Unit
         $tester = new Router('/');
         $this->assertEquals('index', $tester->getMethod());
 
+        $tester = new Router('?params');
+        $this->assertEquals('index', $tester->getMethod());
+
+        $tester = new Router('/?params');
+        $this->assertEquals('index', $tester->getMethod());
+
         $tester->setRequestUrl('/login');
         $this->assertEquals('index', $tester->getMethod());
 
+        $tester->setRequestUrl('/login?params');
+        $this->assertEquals('index', $tester->getMethod());
+
+        $tester->setRequestUrl('/login/params');
+        $this->assertEquals('params', $tester->getMethod());
+
         $tester->setRequestUrl('/login/forgot');
+        $this->assertEquals('forgot', $tester->getMethod());
+
+        $tester->setRequestUrl('/login/forgot?params');
+        $this->assertEquals('forgot', $tester->getMethod());
+
+        $tester->setRequestUrl('/login/forgot/?params');
         $this->assertEquals('forgot', $tester->getMethod());
     }
 }

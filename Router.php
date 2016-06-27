@@ -24,7 +24,7 @@ class Router
 		if($this->request_url == '/')
 			return 'index';
 		$request = explode('/',$this->request_url);
-		return array_key_exists(2, $request)?$request[2]:'index';
+		return array_key_exists(2, $request)&&$request[2]!=''?$request[2]:'index';
 	}
 
 	public function setRequestUrl($request_url)

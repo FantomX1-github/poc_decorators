@@ -72,6 +72,9 @@ class RouterTest extends \Codeception\Test\Unit
         $tester->setRequestUrl('/login');
         $this->assertEquals('index', $tester->getMethod());
 
+        $tester->setRequestUrl('/login/');
+        $this->assertEquals('index', $tester->getMethod());
+
         $tester->setRequestUrl('/login?params');
         $this->assertEquals('index', $tester->getMethod());
 

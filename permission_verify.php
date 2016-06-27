@@ -10,11 +10,17 @@ use \Firebase\JWT\JWT;
 function verify($permissions){
 	$jwt = $_GET['jwt'];
 	$key = "example_key";
-	$decoded = JWT::decode($jwt, $key, array('HS256'));
+	try{
+		$decoded = JWT::decode($jwt, $key, array('HS256'));
+	}catch (Exception $e){
+		$data['status'] = false;
+		$data['message'] = 'Data tampered with';
+		return $data;
+	}
 	$permissions_missing = array_diff($permissions, $decoded->permissions);
 	if(count($permissions_missing)>0){
 		$data['status'] = false;
-		$data['missing'] = $permissions_missing;
+		$data['message'] = 'Missing permissions:' .implode(', ', $permissions_missing);
 		return $data;
 	}else{
 		return true;

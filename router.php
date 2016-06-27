@@ -31,7 +31,7 @@ if($comments && preg_match("/@permissions (.+)/",$mirror_method->getDocComment()
 		$permissions = explode(' ', $permission);
 		$result = verify($permissions);
 		if($result !== true){
-			die("Missing permissions: " . implode(', ', $result['missing']));
+			die("Error: " . $result['message']);
 		}
 	}
 }
